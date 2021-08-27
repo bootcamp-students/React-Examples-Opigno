@@ -1,5 +1,3 @@
-// import Square from "./Square"
-
 import Square from "./Square";
 
 function help(props) {
@@ -28,6 +26,8 @@ function App() {
 }
 
 export default App;
+
+
 
 
 
