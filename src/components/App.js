@@ -1,28 +1,41 @@
 import Square from "./Square";
+import React, { Component } from "react";
 
-function help(props) {
-    console.log(`The following message was relayed from the maintenance room: "${props.str}"`)
-}
+class App extends Component {
+
+    constructor() {
+        super()
+        // model
+        this.num = 35
+        this.state = { date: new Date() };
+    }
 
 
-function App() {
+    // controller
+    // additional methods
+    help(mes) {
+        console.log(`The following message was relayed from the maintenance room: "${mes.str}"`)
+    }
 
-    // const message = { str: "i need extra WD-40" }
-    // help(message)
 
-    const num = "howdy partner";
 
     // render method
-    return (
-        <Square
-            color="pink"
-            size={num}
-            show={true}
-            className="big-header"
-        >
-            <div>this is a secret div, i wonder if it will show up</div>
-        </Square>
-    )
+    // view
+    render() {
+        return (
+            <>
+                <Square
+                    color="pink"
+                    size={this.num}
+                    show={true}
+                    className="big-header"
+                >
+                    <div>this is a secret div, i wonder if it will show up</div>
+                </Square>
+                <h2>{this.state.date.toLocaleTimeString()}</h2>
+            </>
+        )
+    }
 }
 
 export default App;
