@@ -9,21 +9,14 @@ class App extends Component {
         this.state = {
             name: "George",
         }
+        // this.updateNames = this.updateNames.bind(this)
+        // this.clickHelperMethod = this.clickHelperMethod.bind(this)
     }
 
 
     // controller
     // additional methods
     updateNames(str) {
-        function stateSetter() {
-            return ({
-                // key that exists in state : new value that key should store
-                name: str
-            })
-        }
-
-//stateSetter() returns an object
-// set state looks for an object
 
         this.setState(
             {
@@ -35,6 +28,11 @@ class App extends Component {
 
     }
 
+    clickHelperMethod(e) {
+        console.log(e)
+        this.updateNames("Joe")
+    }
+
 
 
     // render method
@@ -44,15 +42,57 @@ class App extends Component {
             this.updateNames("George")
         }
 
+        ///////////////
+        // 1. multiline named function
+        // let this_ = this
+
+        // function clickHelper() {
+        //     this_.updateNames("Joe")
+        // }
+        ///////////////
+        // 2. in line, named function
+        // const nameclicker = () => this.updateNames("Joe")
+        ///////////////
+        // 3. in line, anonymous function (to be used in jsx only)
+        // () => this.updateNames("Joe")
+        ///////////////
+        // 4. method defined as arrow function
+        /*
+            clickHelperMethod = (e) => {
+                console.log(e)
+                this.updateNames("Joe")
+            }
+        */
+        ///////////////
+        // 5. method bound in constructor
+        /*
+        in constructor, line 12
+        _______
+            clickHelperMethod(e){
+                console.log(e)
+                this.updateNames("Joe")
+            }
+        */
+       ///////////////
+        // 6. method bound in jsx render, currently used in render on line 88
+       ///////////////
+
+
+
+
+        let str = "Joe"
+
         return (
-            <h1>The name of the computer is: {this.state.name}</h1>
+            <>
+                <h1>The name of the computer is: {this.state.name}</h1>
+                <button onClick={this.updateNames.bind(this, str)}>click me to change the name</button>
+
+            </>
         )
     }
 }
 
 export default App;
-
-
 
 
 
