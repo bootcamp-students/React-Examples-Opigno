@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import Square from "./Square";
-import Button from "./Button";
+// import Button from "./Button";
 
 class App extends Component {
     constructor() {
         super()
         // model
         this.state = {
+            num: 0,
             name: "George",
         }
     }
@@ -22,7 +23,12 @@ class App extends Component {
         )
     }
     componentDidMount() {
-        console.log("App successfully loaded!")
+        console.log("App successfully Loaded!")
+    }
+    
+    componentDidUpdate() {
+        // this.setState({ num: this.state.num++ })
+        console.log("App successfully Updated!")
     }
 
 
@@ -38,7 +44,7 @@ class App extends Component {
         return (
             <>
                 <h1>The name of the computer is: {this.state.name}</h1>
-                <Button onClick={this.updateNames.bind(this, str)}>click me to change the name</Button>
+                <button onClick={this.updateNames.bind(this, str)}>click me to change the name</button>
 
             </>
         )
