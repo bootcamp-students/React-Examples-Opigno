@@ -2,11 +2,18 @@ function Square(props) {
     // looking at the entire props object
     console.log(props)
 
+    var unreadMessages = []
+
     // render method
     return (
         <>
-            <h1>I am a square, and this is my size: {props.size}</h1>
-            <div>this is a sibling to the h1</div>
+            <div>
+                <h1>Hello!</h1>
+                {unreadMessages.length > 0 &&
+                    <h2>
+                        You have {unreadMessages.length} unread messages.
+                    </h2>}
+            </div>
         </>
     )
 }
