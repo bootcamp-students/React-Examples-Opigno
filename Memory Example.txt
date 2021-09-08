@@ -1,0 +1,19 @@
+locations in memory
+...
+0x123 - variable called x = 4
+0x124 - function called myFunction
+0x125 - class called Fact
+0x126 - variable [] - length, data structure type
+0x127 - variable - ian
+0x128 - variable - dog
+0x129 - variable - music
+0x130 - variable [] - length
+....
+
+
+
+1. state change x from length 3 to 3
+2. react looks at point in memory 
+3. compares to see if new memory location is different
+4. if not - react compares the 2 value to see if they are different (3 != 3)
+5. react updates state, which updates the value stored in memory
