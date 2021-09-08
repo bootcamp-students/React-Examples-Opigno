@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Square from "./Square"
+import axios from "axios"
 
 class App extends Component {
     constructor() {
@@ -8,6 +8,7 @@ class App extends Component {
         this.state = {
             num: 5,
             currentName: "",
+            catAPIData: {},
             names: [],
             colors: [
                 "white",
@@ -270,7 +271,6 @@ class App extends Component {
         // e.preventDefault()
         // clear our the name field every time we hit enter or click the button
     }
-
     updateNameForm(e) {
         this.setState(
             {
@@ -280,44 +280,52 @@ class App extends Component {
         )
         console.log(e.target.value)
     }
-
     componentDidMount() {
         console.log("App successfully Loaded!")
+        // this.loadAPI()
     }
     componentDidUpdate() {
         // this.setState({ num: this.state.num++ })
         console.log("App successfully Updated!")
+        // if (!this.state.catAPIData.length) {
+        //     this.loadAPI()
+        // }
     }
+    loadAPI() {
+        const cat_API_URL = "https://catfact.ninja/fact"
 
+        // Make a request for a user with a given ID
+        axios.get(cat_API_URL)
+            .then(res => {
+                // handle success
+                this.setState({
+                    catAPIData: res.data
+                })
+                console.log(res.data);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+            });
+
+        // this line would happen right after line 298
+    }
 
     // render method
     // view
     render() {
-
-
         return (
-            <>
-                <h1>please sign into class today</h1>
+            <div>
+                <h1>Cat Fact of the Day</h1>
+                <code onClick={this.loadAPI.bind(this)}>https://catfact.ninja/fact</code>
+                <p>
+                    {this.state.catAPIData.fact}
+                </p>
 
-                <label>
-                    Name:
-                        <input
-                        type="text"
-                        name="name"
-                        value={this.state.currentName}
-                        onChange={this.updateNameForm}
-                    />
-                </label>
-                <button onClick={this.updateNames}>Add Name</button>
-
-                <ol>
-                    {
-                        this.state.names
-                            .map((item, index) => <li key={index}>{item}</li>)
-                    }
-                </ol>
-
-            </>
+            </div>
         )
     }
 }
