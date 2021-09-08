@@ -7,7 +7,8 @@ class App extends Component {
         // model
         this.state = {
             num: 5,
-            name: "George",
+            currentName: "",
+            names: [],
             colors: [
                 "white",
                 "pearl",
@@ -251,18 +252,35 @@ class App extends Component {
                 "leather"
             ]
         }
+        this.updateNames = this.updateNames.bind(this)
+        this.updateNameForm = this.updateNameForm.bind(this)
     }
 
     // controller
     // additional methods
-    updateNames(str) {
+    updateNames(e) {
         this.setState(
             {
                 // key that exists in state : new value that key should store
-                name: str
+                names: this.state.names.concat(this.state.currentName)
             }
         )
+        // code to try to solve as the viewer
+        // run this function when we hit enter
+        // e.preventDefault()
+        // clear our the name field every time we hit enter or click the button
     }
+
+    updateNameForm(e) {
+        this.setState(
+            {
+                // key that exists in state : new value that key should store
+                currentName: e.target.value
+            }
+        )
+        console.log(e.target.value)
+    }
+
     componentDidMount() {
         console.log("App successfully Loaded!")
     }
@@ -271,62 +289,33 @@ class App extends Component {
         console.log("App successfully Updated!")
     }
 
-    forLoopHelper() {
-        let output = []
-        for (let index = 0; index < this.state.colors.length; index++) {
-            const color = this.state.colors[index];
-            // console.log(element)
-            let element = <li key={index}>{color}</li>
-
-            output.push(element)
-        }
-        // console.log(output)
-        return output
-    }
 
     // render method
     // view
     render() {
 
-        // using a map helper function
-        function mapHelper(item, index) {
-            return <li key={index}>{item}</li>
-        }
-
-
 
         return (
             <>
-                <h1>My favorite colors (in no particular order)</h1>
-                {/* usage with a for loop, see line 273 */}
-                {/* <ul>
-                    {this.forLoopHelper()}
-                </ul> */}
+                <h1>please sign into class today</h1>
 
-                {/* usage with a mapHelper, see line 291 */}
-                {/* <ul>
+                <label>
+                    Name:
+                        <input
+                        type="text"
+                        name="name"
+                        value={this.state.currentName}
+                        onChange={this.updateNameForm}
+                    />
+                </label>
+                <button onClick={this.updateNames}>Add Name</button>
+
+                <ol>
                     {
-                        this.state.colors.map(mapHelper)
-                    }
-                </ul> */}
-                
-                {/* usage with inline arrow functions  */}
-                {/* <ul>
-                    {
-                        this.state.colors
-                            .filter(color => color.length <= 3)
+                        this.state.names
                             .map((item, index) => <li key={index}>{item}</li>)
                     }
-                </ul> */}
-
-
-                 {/* usage with sending data to a child  */}
-                <ul>
-                    {
-                        this.state.colors
-                            .map((item, index) => <Square key={item} colorName={item} />)
-                    }
-                </ul>
+                </ol>
 
             </>
         )
