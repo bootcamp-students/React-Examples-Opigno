@@ -4,7 +4,7 @@ function Fact(props) {
             {props.catFactObj.fact}
             <button
                 type="button"
-                class="btn btn-secondary"
+                class="btn btn-warning"
                 onClick={() => props.updateFact(props.catFactObj.id)}
             >
                 update
