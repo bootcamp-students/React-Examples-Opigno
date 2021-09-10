@@ -5,7 +5,7 @@ export default function InfoCard(props) {
         <div className="col-md-4">
             <div className="card mb-4 box-shadow">
                 <div className="card-body">
-                    <img className="img-fluid" src={props.image} />
+                    <img className="img-fluid" src={props.image} alt={props.id}/>
                     <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                     <div className="d-flex justify-content-between align-items-center">
                         <div className="btn-group">

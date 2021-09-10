@@ -1,5 +1,6 @@
 import React from 'react'
-import Home from './pages/Home'
+// import Home from './pages/Home'
+import Form from './pages/Form'
 import Header from './components/Header'
 import Footer from './components/Footer'
 
@@ -9,9 +10,9 @@ export default function App() {
             <Header />
 
             {/* add different pages via react-router */}
-            <Home />
+            <Form />
 
-            <Footer />
+            {/* <Footer /> */}
         </>
     )
 }

@@ -6,7 +6,7 @@ import img3 from "../img/iStock3.jpg"
 import img4 from "../img/iStock4.jpg"
 import img5 from "../img/iStock5.jpg"
 import img6 from "../img/iStock6.jpg"
-import img7 from "../img/iStock7.jpg"
+import img7 from "../img/iStock7.jpg" // learn more here: https://create-react-app.dev/docs/adding-images-fonts-and-files/
 
 export default function Home() {
     let imagesArray = [img1, img2, img3, img4, img5, img6, img7]
