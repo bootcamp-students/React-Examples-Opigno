@@ -1,47 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import InfoCard from '../components/InfoCard'
+import img1 from "../img/iStock1.jpg"
+import img2 from "../img/iStock2.jpg"
+import img3 from "../img/iStock3.jpg"
+import img4 from "../img/iStock4.jpg"
+import img5 from "../img/iStock5.jpg"
+import img6 from "../img/iStock6.jpg"
+import img7 from "../img/iStock7.jpg"
 
 export default function Home() {
+    let imagesArray = [img1, img2, img3, img4, img5, img6, img7]
 
-    // setState -> setWord
-    const [word, setWord] = useState("hello")
+    const [showImages, setShowImages] = useState(false)
 
-
-
-    const [num, setNum] = useState(0)
-    const numChanger = () => {
-        setNum(num + 1)
+    const clickHandler = () => {
+        console.log("triggering lifecycle with state update")
+        setShowImages(!showImages)
     }
 
-
-
-
-    const [array, setArray] = useState([])
-    // 1st method
-    const updateArr1 = () => {
-        let newArr = [...array, "added new item"]
-        setArray(newArr)
+    const mountingFunction = () => {
+        console.log("component successfully mounted")
+        clickHandler()
     }
 
-    // second method
-    const updateArr2 = () => {
-        setArray([...array, "added new item"])
-    }
-
-    // using prev state
-    const updateArr3 = () => {
-        const setter = prevArray => {
-            return [...prevArray, "new item"]
-        }
-        setArray(setter)
-    }
-    
-    // using prev state inline
-    const updateArr4 = () => {
-        setArray(prevArray => {
-            return [...prevArray, "new item"]
-        })
-    }
+    // component did mount
+    useEffect(mountingFunction, [])
 
     return (
         <main role="main">
@@ -49,21 +32,27 @@ export default function Home() {
                 <div className="container">
                     <h1 className="jumbotron-heading">Album example</h1>
                     <p className="lead text-muted">
-                        {num} <button className="btn btn-primary" onClick={numChanger}>click me</button>
+                        This is my photo album
                     </p>
-                    {/* <p>
-                        <a href="#" className="btn btn-primary my-2">Main call to action</a>
-                        <a href="#" className="btn btn-secondary my-2">Secondary action</a>
-                    </p> */}
+                    <p>
+                        <button className="btn btn-primary my-2">Main call to action</button> {" "}
+                        <button onClick={clickHandler} className="btn btn-secondary my-2">Show Images</button>
+                    </p>
                 </div>
             </section>
-            {/* <div className="album py-5 bg-light">
+            <div className="album py-5 bg-light">
                 <div className="container">
                     <div className="row">
-                        {[...Array(10).keys()].map((item, index) => <InfoCard key={index} />)}
+                        {imagesArray.map((image, index) => {
+                            return <InfoCard
+                                key={index}
+                                image={image}
+                                showImages={showImages}
+                            />
+                        })}
                     </div>
                 </div>
-            </div> */}
+            </div>
         </main>
     )
 }
