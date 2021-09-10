@@ -11,20 +11,48 @@ import img7 from "../img/iStock7.jpg"
 export default function Home() {
     let imagesArray = [img1, img2, img3, img4, img5, img6, img7]
 
-    const [showImages, setShowImages] = useState(false)
 
+    const [showImages, setShowImages] = useState(false)
     const clickHandler = () => {
         console.log("triggering lifecycle with state update")
         setShowImages(!showImages)
     }
 
+
+
+
+    const [pageLoad, setPageLoad] = useState(false) // redundant, not needed
     const mountingFunction = () => {
         console.log("component successfully mounted")
-        clickHandler()
+        setPageLoad(true) // redundant, not needed
     }
-
     // component did mount
     useEffect(mountingFunction, [])
+
+
+
+    const updateFunction = () => {
+        if (pageLoad) {
+            console.log("component successfully updated, first use effect ran")
+        }
+    }
+    // component did update
+    useEffect(updateFunction)
+
+
+
+    const [num, setNum] = useState(0)
+
+    const sumMachine = () => {
+        setNum(prevNum => prevNum + 1)
+    }
+
+    // component did update based on a single state
+    useEffect(() => {
+        console.log("num successfully updated, second use effect ran")
+    }, [num, pageLoad])
+
+
 
     return (
         <main role="main">
@@ -35,7 +63,7 @@ export default function Home() {
                         This is my photo album
                     </p>
                     <p>
-                        <button className="btn btn-primary my-2">Main call to action</button> {" "}
+                        <button onClick={sumMachine} className="btn btn-primary my-2">incremement sum</button> {" "}
                         <button onClick={clickHandler} className="btn btn-secondary my-2">Show Images</button>
                     </p>
                 </div>
