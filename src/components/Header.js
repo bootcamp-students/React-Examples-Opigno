@@ -13,6 +13,7 @@ export default function Header() {
                         <NavLink to="/home" className="nav-link" activeClassName="active">Home</NavLink>
                         <NavLink to="/form" className="nav-link" activeClassName="active">Form</NavLink>
                         <NavLink to="/data" className="nav-link" activeClassName="active">Data</NavLink>
+                        <NavLink to="/axios" className="nav-link" activeClassName="active">Axios</NavLink>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
