@@ -78,6 +78,7 @@ export default function Home() {
                         {imagesArray.map((image, index) => {
                             return <InfoCard
                                 key={index}
+                                id={index}
                                 image={image}
                                 showImages={showImages}
                             />

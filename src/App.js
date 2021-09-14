@@ -4,12 +4,14 @@ import Form from './pages/Form'
 // import Parent from './components/Parent'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import ImagePage from './pages/ImagePage'
 
 
 import {
     BrowserRouter as Router,
     Switch,
-    Route
+    Route,
+    useHistory
 } from "react-router-dom";
 
 //2. initialized the context
@@ -23,20 +25,25 @@ export default function App() {
         coolState: ":)",
         whichPage: 1
     }
-
+    const history = useHistory()
 
     return (
         <div className="border border-primary m-auto p-2">
             {/* provided the data to the context via the provider  */}
-            <Router>
+
 
                 <AppContext.Provider value={initialContext}>
 
                     <Header />
+                    {history.location.pathname}
 
                     <Switch>
                         <Route path="/form">
                             <Form />
+                        </Route>
+
+                        <Route path="/image/:imgNum">
+                            <ImagePage />
                         </Route>
 
                         <Route path={["/", '/home']}>
@@ -49,7 +56,7 @@ export default function App() {
 
                 </AppContext.Provider>
 
-            </Router>
+
 
         </div>
     )
