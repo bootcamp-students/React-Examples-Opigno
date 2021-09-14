@@ -5,7 +5,7 @@ import Form from './pages/Form'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import ImagePage from './pages/ImagePage'
-
+import ComplexData from './pages/ComplexData'
 
 import {
     BrowserRouter as Router,
@@ -35,7 +35,6 @@ export default function App() {
                 <AppContext.Provider value={initialContext}>
 
                     <Header />
-                    {history.location.pathname}
 
                     <Switch>
                         <Route path="/form">
@@ -44,6 +43,10 @@ export default function App() {
 
                         <Route path="/image/:imgNum">
                             <ImagePage />
+                        </Route>
+
+                        <Route path='/data'>
+                            <ComplexData />
                         </Route>
 
                         <Route path={["/", '/home']}>
