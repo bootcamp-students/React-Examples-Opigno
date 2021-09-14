@@ -8,6 +8,9 @@ import img5 from "../img/iStock5.jpg"
 import img6 from "../img/iStock6.jpg"
 import img7 from "../img/iStock7.jpg" // learn more here: https://create-react-app.dev/docs/adding-images-fonts-and-files/
 
+import { Link } from 'react-router-dom'
+
+
 export default function Home() {
     let imagesArray = [img1, img2, img3, img4, img5, img6, img7]
 
@@ -64,7 +67,8 @@ export default function Home() {
                     </p>
                     <p>
                         <button onClick={sumMachine} className="btn btn-primary my-2">incremement sum</button> {" "}
-                        <button onClick={clickHandler} className="btn btn-secondary my-2">Show Images</button>
+                        <button onClick={clickHandler} className="btn btn-secondary my-2">Show Images</button>{" "}
+                        <Link className="btn btn-warning my-2" to="/form">Fill out my form!</Link>
                     </p>
                 </div>
             </section>

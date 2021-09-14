@@ -20,7 +20,9 @@ export default function Form() {
 
     const formValidator = () => {
         if (data.zip) {
-            if (data.zip.charCodeAt > 48 && data.zip.charCodeAt < 57) {
+            if (data.zip.charCodeAt > 48 &&
+                data.zip.charCodeAt < 57 &&
+                data.zip.length === 5) {
                 // good to go
                 return true
             }
@@ -30,7 +32,7 @@ export default function Form() {
         }
 
     }
-    useEffect(formValidator, [Object.keys(data).length])
+    useEffect(formValidator, [data.zip])
 
 
     const submitForm = () => {

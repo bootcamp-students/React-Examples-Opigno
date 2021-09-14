@@ -1,35 +1,55 @@
 import React, { createContext } from 'react'
-// import Home from './pages/Home'
-// import Form from './pages/Form'
-import Parent from './components/Parent'
-// import Header from './components/Header'
-// import Footer from './components/Footer'
+import Home from './pages/Home'
+import Form from './pages/Form'
+// import Parent from './components/Parent'
+import Header from './components/Header'
+import Footer from './components/Footer'
+
+
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route
+} from "react-router-dom";
 
 //2. initialized the context
 export const AppContext = createContext()
 
 export default function App() {
     //1. created initial context data
-    let initialContext = { 
-        newVariable: "this is data from the AppContext", 
+    let initialContext = {
+        newVariable: "this is data from the AppContext",
         booleanData: true,
-        coolState: ":)"
- }
+        coolState: ":)",
+        whichPage: 1
+    }
 
 
     return (
         <div className="border border-primary m-auto p-2">
             {/* provided the data to the context via the provider  */}
-            <AppContext.Provider value={initialContext}>
-                {/* <Header /> */}
+            <Router>
 
-                {/* add different pages via react-router */}
-                {/* <Form /> */}
-                {/* <Home /> */}
-                This is the App
-                <Parent />
-                {/* <Footer /> */}
-            </AppContext.Provider>
+                <AppContext.Provider value={initialContext}>
+
+                    <Header />
+
+                    <Switch>
+                        <Route path="/form">
+                            <Form />
+                        </Route>
+
+                        <Route path={["/", '/home']}>
+                            <Home />
+                        </Route>
+
+                    </Switch>
+
+                    <Footer />
+
+                </AppContext.Provider>
+
+            </Router>
 
         </div>
     )
